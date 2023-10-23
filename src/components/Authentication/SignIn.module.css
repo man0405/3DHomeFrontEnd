@@ -1,0 +1,120 @@
+.box {
+	display: flex;
+	width: 80vw;
+	justify-content: space-between;
+}
+
+.left {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	gap: 5rem;
+	width: 30%;
+	margin-left: 10rem;
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.logo h3 {
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+
+.title h2 {
+	font-size: 3.2rem;
+	font-weight: 600;
+	margin-bottom: 1.8rem;
+}
+
+.title h2 svg {
+	color: var(--primary);
+}
+.title h5 {
+	font-size: 1.8rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.55;
+}
+
+.box form {
+	display: flex;
+	flex-direction: column;
+}
+
+.box p {
+	position: relative;
+	text-align: center;
+	color: var(--muted-foreground);
+	margin-bottom: 2.5rem;
+}
+
+.box p:before {
+	content: "";
+	border: 1px solid var(--border);
+	position: absolute;
+	width: 35%;
+	top: 8px;
+	left: 0px;
+}
+
+.box p:after {
+	content: "";
+	border: 1px solid var(--border);
+	width: 35%;
+	position: absolute;
+	top: 8px;
+	right: 0px;
+}
+
+.term {
+	color: var(--muted-foreground);
+	font-size: 1.6rem;
+	font-style: normal;
+	font-weight: 500;
+	margin-bottom: 3.4rem;
+}
+
+.term label {
+	margin-left: 1.4rem;
+}
+
+.btn {
+	padding: 2.3rem 0;
+	border: none;
+	font-size: 1.6rem;
+	font-style: normal;
+	font-weight: 500;
+	border-radius: 0.6rem;
+	margin-bottom: 2.4rem;
+	color: var(--popover);
+	background-color: var(--popover-foreground);
+}
+
+.active {
+	background-color: #5871eb;
+}
+
+.google {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+.google svg {
+	position: absolute;
+	left: 20%;
+}
+
+.right {
+	max-width: 50%;
+}
+
+.right img {
+	height: 100%;
+	object-fit: cover;
+	border-radius: 2rem;
+}

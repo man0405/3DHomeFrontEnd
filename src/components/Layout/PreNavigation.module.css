@@ -1,0 +1,22 @@
+.navigation .menu,
+.button-action {
+	display: flex;
+	align-items: center;
+	/* gap: 1rem; */
+}
+
+.menu-item,
+.menu-item a,
+.button-action a {
+	padding: 1rem 1.6rem;
+	color: var(--card-foreground);
+}
+
+.menu-item:hover a {
+	color: var(--primary);
+}
+
+.button-action a:last-child {
+	border: 1px solid var(--card-foreground);
+	border-radius: 2.4rem;
+}

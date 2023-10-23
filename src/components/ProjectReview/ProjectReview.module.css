@@ -1,0 +1,20 @@
+.project-review {
+	display: grid;
+	grid-template-columns: 0.8fr 1fr;
+	margin-top: 6.5rem;
+}
+
+.heading {
+	border-right: 1px solid var(--border);
+	padding-right: 2rem;
+	font-size: 5.5rem;
+	font-weight: 900;
+	line-height: 1.14;
+}
+
+.project-detail ul li {
+	display: flex;
+	gap: 4.18rem;
+	padding: 4.8rem;
+	border: 1px solid var(--border);
+}

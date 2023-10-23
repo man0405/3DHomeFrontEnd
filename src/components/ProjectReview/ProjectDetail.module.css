@@ -1,0 +1,42 @@
+.image {
+	position: relative;
+	min-width: 25.0281rem;
+	height: 14.5314rem;
+	border-radius: 1rem;
+	overflow: hidden;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.address {
+	font-size: 1.6rem;
+	font-weight: 400;
+	line-height: 1.3333;
+	color: var(--ring);
+}
+.name {
+	font-size: 3.5rem;
+	font-style: normal;
+	font-weight: 700;
+}
+
+.button {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	letter-spacing: 0.096rem;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+.button a {
+	color: var(--card-foreground);
+}
+
+.button:hover > * {
+	color: var(--primary);
+}

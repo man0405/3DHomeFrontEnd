@@ -1,0 +1,40 @@
+.step {
+	margin-top: 15rem;
+	display: flex;
+	align-items: center;
+	gap: 3rem;
+}
+
+.image img {
+	width: 57.5rem;
+	height: 71rem;
+	opacity: 0.9;
+}
+
+.title {
+	font-size: 4.8rem;
+	line-height: 1.302;
+	font-weight: 200;
+	margin-bottom: 3rem;
+}
+.title span {
+	margin-left: 1rem;
+}
+
+.description {
+	max-width: 54.2rem;
+	line-height: 1.302;
+	font-weight: 200;
+	font-size: 1.4rem;
+	margin-bottom: 3rem;
+}
+
+.list {
+	display: flex;
+	column-gap: 3rem;
+	margin-bottom: 3rem;
+}
+
+.content a span {
+	margin-right: 1rem;
+}

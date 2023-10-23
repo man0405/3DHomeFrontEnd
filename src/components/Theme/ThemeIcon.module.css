@@ -1,0 +1,30 @@
+.theme-icon {
+	position: fixed;
+	background-color: var(--card);
+	width: 5rem;
+	height: 5rem;
+	border-radius: 100rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid var(--border);
+	right: 5rem;
+	bottom: 5rem;
+}
+
+.night,
+.sun {
+	position: absolute;
+	width: 3.5rem;
+	height: 3.5rem;
+	transform: translateX(-20px);
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.3s ease-in-out;
+}
+
+.active {
+	transform: translateX(0);
+	visibility: visible;
+	opacity: 1;
+}

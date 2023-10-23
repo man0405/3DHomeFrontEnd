@@ -1,0 +1,20 @@
+.label {
+	font-size: 1.6rem;
+	font-style: normal;
+	font-weight: 500;
+	color: var(--muted-foreground);
+	margin-bottom: 1.2rem;
+}
+
+.input {
+	font-size: 1.6rem;
+	font-style: normal;
+	font-weight: 500;
+
+	padding: 2rem 3rem;
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	background-color: var(--input);
+	transition: 0.35s border-color, 0.35s background-color;
+	margin-bottom: 2.1rem;
+}

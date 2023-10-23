@@ -1,0 +1,30 @@
+.item {
+	display: flex;
+	flex-direction: column;
+	padding: 4.2rem 6.4rem 4.2rem 1.5rem;
+	border: 1px solid var(--border);
+}
+
+.item svg {
+	font-size: 2.4rem;
+	margin-bottom: 1rem;
+}
+
+.item span {
+	max-width: 12rem;
+	line-height: 1.302;
+	font-weight: 200;
+	font-size: 1.8rem;
+}
+
+.active span {
+	color: var(--secondary);
+}
+
+.active {
+	background-color: var(--blue-dark);
+}
+
+.active svg {
+	color: var(--primary);
+}

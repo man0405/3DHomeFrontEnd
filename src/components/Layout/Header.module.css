@@ -1,0 +1,87 @@
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.logo img {
+	width: 4.5rem;
+	height: 4.5rem;
+}
+
+.header .list {
+	display: flex;
+
+	gap: 6rem;
+}
+
+.header .list a {
+	font-size: 1.4rem;
+	letter-spacing: 0.3rem;
+	line-height: 1.8rem;
+	text-align: center;
+	text-transform: uppercase;
+	color: var(--muted-foreground);
+}
+.header ul li {
+	cursor: pointer;
+}
+
+.header .active {
+	border-color: var(--primary);
+	transition: border-color 0.5s;
+	pointer-events: none;
+}
+
+.header .active a {
+	color: var(--primary);
+}
+
+.item {
+	position: relative;
+	padding: 1rem 2rem;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	border-top: 1px solid transparent;
+	border-bottom: 1px solid transparent;
+}
+
+.item::before {
+	content: "";
+	position: absolute;
+	bottom: 0rem;
+	left: 0;
+	color: blue;
+	background-color: blue;
+	width: 0;
+	height: 0.2rem;
+	transition: 0.3s;
+}
+
+.item:hover::before {
+	width: 100%;
+}
+
+.user svg {
+	width: 3rem;
+	height: 3rem;
+}
+
+.user {
+	position: relative;
+}
+
+.user:hover > ul {
+	display: flex;
+}
+
+.user::before {
+	position: absolute;
+	content: "";
+	display: block;
+	right: 0;
+
+	width: 10rem;
+	height: 10rem;
+}

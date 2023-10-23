@@ -1,0 +1,45 @@
+.BubbleText {
+	width: 75vw;
+	margin: 0 auto;
+}
+.title {
+	text-align: center;
+	font-size: 6rem;
+	line-height: 1.6;
+	font-weight: 300;
+	cursor: default;
+	/* color: rgba(0, 0, 0, 0.75); */
+}
+.hover-text {
+	transition: 0.35s font-weight, 0.35s color;
+
+	/* filter: drop-shadow(rgba(0, 0, 0, 0.24) 0px 3px 8px); */
+	text-shadow: 1px 1px 2px black;
+}
+
+.hover-text:hover {
+	font-weight: 900;
+	color: rgb(238, 242, 255);
+}
+
+/* To the right */
+.hover-text:hover + .hover-text {
+	font-weight: 500;
+	color: rgb(199, 210, 254);
+}
+
+.hover-text:hover + .hover-text + .hover-text {
+	font-weight: 300;
+	color: rgb(180, 191, 233);
+}
+
+/* To the left */
+.hover-text:has(+ .hover-text:hover) {
+	font-weight: 500;
+	color: rgb(199, 210, 254);
+}
+
+.hover-text:has(+ .hover-text + .hover-text:hover) {
+	font-weight: 400;
+	color: rgb(210, 218, 249);
+}

@@ -1,0 +1,9 @@
+.slogan {
+	display: grid;
+	place-content: center;
+	height: 80vh;
+	background-color: var(--background);
+	background-image: url("../../../public/assets/images/photo-1573987116136-8161883a27f1.webp");
+	background-position: center;
+	background-size: cover;
+}
