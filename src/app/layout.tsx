@@ -20,7 +20,7 @@ export default function RootLayout({ children }: RootLayout) {
 	const theme = cookieStore.get("theme")?.value === "dark" ? false : true;
 
 	return (
-		<html lang="en">
+		<html suppressHydrationWarning lang="en">
 			<body className={`${inter.className} ${theme ? "" : "dark"}`}>
 				<ReduxProvider>{children}</ReduxProvider>
 			</body>

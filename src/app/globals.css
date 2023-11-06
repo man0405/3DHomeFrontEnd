@@ -116,6 +116,46 @@ input[type="text"]:focus {
 	text-decoration: underline;
 }
 
+.bold {
+	font-weight: 700;
+}
+
+.loading {
+	background: linear-gradient(
+		120deg,
+		#e5e5e5 30%,
+		#f0f0f0 38%,
+		#f0f0f0 40%,
+		#e5e5e5 48%
+	);
+	background-size: 200% 100%;
+	background-position: 100% 0;
+	animation: load89234 2s infinite;
+}
+
+@keyframes load89234 {
+	100% {
+		background-position: -100% 0;
+	}
+}
+@keyframes opacity-effect {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes opacity-hide {
+	from {
+		opacity: 100%;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
 @keyframes blink-caret {
 	from {
 		border-right-color: rgba(255, 255, 255, 0.75);

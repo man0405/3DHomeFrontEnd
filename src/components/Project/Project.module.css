@@ -1,0 +1,45 @@
+.item {
+	display: flex;
+	align-items: center;
+	height: 44rem;
+	overflow: hidden;
+	border: 1px solid var(--border);
+}
+
+.image {
+	flex: 2;
+}
+
+.image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.content {
+	flex: 1;
+	padding: 3rem;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: var(--card);
+}
+.content h3 {
+	font-size: 4rem;
+	line-height: 1.172;
+	font-weight: 300;
+	margin-bottom: 7rem;
+}
+.content p {
+	font-size: 1.4rem;
+	line-height: 1.6;
+	font-weight: 300;
+	margin-bottom: 6rem;
+	color: var(--muted-foreground);
+}
+.content a {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+}

@@ -1,0 +1,13 @@
+.heading {
+	font-size: 6.4rem;
+	font-weight: 300;
+	line-height: 1;
+	padding-bottom: 6rem;
+	margin-top: 6rem;
+	border-bottom: 1px solid var(--border);
+	color: var(--muted-foreground);
+}
+
+.heading span {
+	color: var(--card-foreground);
+}

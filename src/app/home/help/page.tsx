@@ -1,5 +1,11 @@
-const help = () => {
-	return <h1>help</h1>;
+import Heading from "@/components/ui/type/Heading";
+
+const HelpPage = () => {
+	return (
+		<section className="container">
+			<Heading first="Contact" second="Information" />
+		</section>
+	);
 };
 
-export default help;
+export default HelpPage;

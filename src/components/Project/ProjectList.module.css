@@ -1,0 +1,13 @@
+.list {
+	padding: 3rem 0;
+	margin-bottom: 3rem;
+}
+
+.list ul {
+	display: flex;
+	flex-direction: column;
+	row-gap: 6rem;
+	min-width: 100%;
+	display: flex;
+	animation: opacity-effect ease-in-out 1s;
+}

@@ -7,6 +7,7 @@ import User from "../User/User";
 
 import classes from "./Header.module.css";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
 	const path = usePathname();
