@@ -1,0 +1,56 @@
+.list-wrap {
+	display: flex;
+	animation: opacity-effect ease-in-out 1s;
+	flex-direction: column;
+	row-gap: 6rem;
+	min-width: 100%;
+	padding: 3rem 0;
+	margin-bottom: 3rem;
+}
+.project {
+	display: flex;
+	align-items: center;
+	height: 44rem;
+	overflow: hidden;
+}
+
+.img {
+	flex: 2;
+	width: 100%;
+	height: 100%;
+}
+
+.content {
+	background-color: var(--card);
+	padding: 3rem;
+	flex: 1;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.title {
+	width: 100%;
+	height: 100%;
+	font-size: 4rem;
+	line-height: 1.172;
+	font-weight: 300;
+	color: var(--second-color);
+	margin-bottom: 7rem;
+}
+.desc {
+	width: 100%;
+	height: 100%;
+	font-size: 1.4rem;
+	line-height: 1.6;
+	font-weight: 300;
+	margin-bottom: 6rem;
+}
+
+.button {
+	width: 100%;
+	height: 100%;
+	font-size: 1.2rem;
+	font-weight: 400;
+}

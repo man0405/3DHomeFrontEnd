@@ -1,0 +1,55 @@
+.image {
+	width: 100%;
+	height: 40rem;
+	overflow: hidden;
+	margin-bottom: 4rem;
+}
+.image img {
+	width: 100%;
+}
+.working-process {
+	display: flex;
+	margin-bottom: 3rem;
+}
+
+.subtile {
+	flex: 1;
+	font-size: 2.6rem;
+	font-weight: 600;
+}
+.description {
+	flex: 2;
+}
+
+.description p {
+	font-size: 1.6rem;
+	line-height: 2;
+	font-weight: 400;
+	padding-bottom: 1rem;
+}
+
+.get {
+	margin-top: 3rem;
+	background-color: var(--gray1);
+	padding: 2.4rem 3rem;
+	display: flex;
+	align-items: center;
+	gap: 4rem;
+}
+.get span {
+	font-size: 1.4rem;
+	font-weight: 500;
+	color: var(--gray8b);
+}
+
+.get ul {
+	display: flex;
+	align-items: center;
+	gap: 3rem;
+}
+.get ul li {
+	color: var(--primary);
+	font-size: 1.6rem;
+	font-weight: 400;
+	cursor: pointer;
+}

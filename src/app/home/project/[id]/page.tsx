@@ -1,5 +1,11 @@
+import ProjectDetail from "@/components/Project/ProjectDetail/ProjectDetail";
+
 const ProjectDetailPage = () => {
-	return <>Project Detail</>;
+	return (
+		<section className="container">
+			<ProjectDetail />
+		</section>
+	);
 };
 
 export default ProjectDetailPage;

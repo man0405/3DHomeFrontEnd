@@ -3,6 +3,7 @@ import Heading from "@/components/ui/type/Heading";
 import Function from "@/components/Function/Function";
 import { Suspense } from "react";
 import ProjectList from "@/components/Project/ProjectList";
+import Loading from "./loading";
 
 const DUMMY_DATA = {
 	page: 1,
@@ -46,7 +47,7 @@ const ProjectPage = () => {
 	return (
 		<section className="container">
 			<Heading first="Our" second="Project" />
-			<Suspense fallback={<div>Loading...</div>}>
+			<Suspense fallback={<Loading />}>
 				<ProjectList data={DUMMY_DATA.data} />
 			</Suspense>
 			<Function page={DUMMY_DATA.page} total={DUMMY_DATA.total} />
