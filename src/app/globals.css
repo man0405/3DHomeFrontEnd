@@ -136,6 +136,39 @@ input[type="text"]:focus {
 	animation: load89234 2s infinite;
 }
 
+/* Slick  start */
+body .slick-arrow {
+	background: rgb(0 0 0 / 70%);
+	color: var(--primary);
+	cursor: pointer;
+	width: 40px;
+	height: 40px;
+	border-radius: 4px;
+	padding-top: 1px;
+	z-index: 2;
+}
+body .slick-arrow::before {
+	color: var(--primary);
+}
+
+body .slick-prev {
+	left: 1rem;
+}
+
+body .slick-next {
+	right: 1rem;
+}
+body .slick-prev:hover,
+body .slick-prev:focus,
+body .slick-next:hover,
+body .slick-next:focus {
+	color: var(--primary);
+	outline: none;
+	background: rgb(0 0 0 / 50%);
+}
+
+/* slick end */
+
 @keyframes load89234 {
 	100% {
 		background-position: -100% 0;

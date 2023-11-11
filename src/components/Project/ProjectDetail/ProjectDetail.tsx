@@ -1,6 +1,11 @@
+"use client";
 import React from "react";
 import Image from "next/image";
-// import Slider from "react-slick";
+import { IoChevronForward } from "react-icons/io5";
+
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 import classes from "./ProjectDetail.module.css";
 
@@ -21,12 +26,14 @@ const DUMMY_DATA = {
 			img: "/assets/images/photo-1545324418-cc1a3fa10c00.webp",
 			category: "Modern",
 			name: "Attack My Project",
+			link: "/....",
 		},
 		{
 			id: 2,
 			img: "/assets/images/photo-1493606371202-6275828f90f3.webp",
 			category: "Traditional",
 			name: "Attack My Team",
+			link: "/....",
 		},
 		{
 			id: 3,
@@ -34,6 +41,7 @@ const DUMMY_DATA = {
 
 			category: "Japadi",
 			name: "Attack My Japadi",
+			link: "/....",
 		},
 		{
 			id: 4,
@@ -41,6 +49,7 @@ const DUMMY_DATA = {
 			img: "/assets/images/photo-1579632652768-6cb9dcf85912.webp",
 
 			name: "Attack My Industrial",
+			link: "/....",
 		},
 		{
 			id: 5,
@@ -48,6 +57,7 @@ const DUMMY_DATA = {
 			img: "/assets/images/photo-1580216643062-cf460548a66a.webp",
 
 			name: "Attack My Contemporary",
+			link: "/....",
 		},
 	],
 };
@@ -57,8 +67,8 @@ export default function ProjectDetail() {
 		classesName: "center",
 		centerMode: true,
 		infinite: true,
-		centerPadding: "60px",
-		slidesToShow: 3,
+		centerPadding: "180px",
+		slidesToShow: 2,
 		speed: 500,
 	};
 	const first = DUMMY_DATA.name.split(" ")[0].toUpperCase();
@@ -69,7 +79,7 @@ export default function ProjectDetail() {
 		<>
 			<HeadingProject first={first} second={second} desc={DUMMY_DATA.desc} />
 			<div className={classes.detail}>
-				<div className={classes.image}>
+				<div className={`${classes.image} container`}>
 					<Image
 						src={DUMMY_DATA.src}
 						alt="Hellos"
@@ -77,7 +87,7 @@ export default function ProjectDetail() {
 						height={500}
 					></Image>
 				</div>
-				<div className={classes["working-process"]}>
+				<div className={`${classes["working-process"]} container`}>
 					<div className={classes.subtile}>Working Process</div>
 					<div className={classes.description}>
 						<p>{DUMMY_DATA["process-1"]}</p>
@@ -92,14 +102,51 @@ export default function ProjectDetail() {
 						</div>
 					</div>
 				</div>
-				{/* <div className={classes.interior}>
+				<div className={classes.interior}>
+					<div className={`${classes.subtile} container`}>Interior Service</div>
+
 					<Slider {...settings}>
 						{DUMMY_DATA.interior.map((item) => (
-							<Interior {...item} />
+							<Interior {...item} key={item.id} />
 						))}
-
 					</Slider>
-				</div> */}
+				</div>
+				<div className={`container ${classes.price}`}>
+					<div className={classes.subtile}>Price Detail</div>
+					<table className={classes.table}>
+						<tbody>
+							<tr>
+								<td>Option fermentum</td>
+								<td>$600 - $1150</td>
+							</tr>
+							<tr>
+								<td>Option metus tellus</td>
+								<td>$250 - $350</td>
+							</tr>
+							<tr>
+								<td>Option gravida</td>
+								<td>$43.50 - $93.50</td>
+							</tr>
+							<tr>
+								<td>Option eiusmod</td>
+								<td>$1350 - $2350</td>
+							</tr>
+							<tr>
+								<td>Option tempor</td>
+								<td>$500</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div className={`container ${classes.order}`}>
+					<div className={classes.ready}>
+						<h3>Ready to Order your Project ?</h3>
+					</div>
+					<div className={classes["get-order"]}>
+						Get In Touch
+						<IoChevronForward />
+					</div>
+				</div>
 			</div>
 		</>
 	);

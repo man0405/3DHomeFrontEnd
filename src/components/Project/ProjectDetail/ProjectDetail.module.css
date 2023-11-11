@@ -16,6 +16,7 @@
 	flex: 1;
 	font-size: 2.6rem;
 	font-weight: 600;
+	margin-bottom: 2.4rem;
 }
 .description {
 	flex: 2;
@@ -52,4 +53,107 @@
 	font-size: 1.6rem;
 	font-weight: 400;
 	cursor: pointer;
+}
+
+.interior,
+.price {
+	margin-bottom: 6rem;
+}
+
+/* Table */
+.table {
+	max-width: 100%;
+	background-color: transparent;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+
+.table tbody {
+	width: 100%;
+}
+
+.table tbody tr:nth-child(odd) {
+	background-color: #f6f6f6;
+}
+
+.table tbody tr td:first-child {
+	border-right: 1px solid var(--border);
+}
+
+.table tbody tr td {
+	padding: 2.4rem;
+	line-height: 2.8rem;
+	text-align: center;
+	vertical-align: top;
+}
+
+/* Table */
+
+/* Order */
+.order {
+	margin-bottom: 6rem;
+	position: relative;
+	background-color: #262626;
+	display: flex;
+	align-items: center;
+	padding: 4rem 4rem;
+	justify-content: space-between;
+}
+.order ::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 47%;
+	background: rgba(255, 255, 255, 0.041);
+}
+.ready h3 {
+	position: relative;
+	color: #8b8b8b;
+	font-size: 1.4rem;
+	font-weight: 600;
+	letter-spacing: 0.2rem;
+	padding-left: 9rem;
+	top: 0.2rem;
+	text-transform: uppercase;
+}
+
+.ready h3::before {
+	content: "";
+	background-color: var(--primary);
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 5rem;
+	height: 0.2rem;
+}
+
+.ready h3::after {
+	content: "";
+	position: absolute;
+	top: -1.5rem;
+	left: -5rem;
+	bottom: -1.5rem;
+	width: 27rem;
+	background: rgba(255, 255, 255, 0.041);
+}
+
+.get-order {
+	z-index: 3;
+	cursor: pointer;
+	color: var(--primary);
+	background: none;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 0px;
+	padding: 14px 30px 14px 40px;
+	display: flex;
+	align-items: center;
+	font-size: 1.4rem;
+	font-weight: 600;
+}
+
+.get-order svg {
+	margin-left: 2rem;
 }

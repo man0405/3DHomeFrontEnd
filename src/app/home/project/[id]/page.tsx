@@ -2,7 +2,7 @@ import ProjectDetail from "@/components/Project/ProjectDetail/ProjectDetail";
 
 const ProjectDetailPage = () => {
 	return (
-		<section className="container">
+		<section>
 			<ProjectDetail />
 		</section>
 	);

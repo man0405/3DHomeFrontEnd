@@ -8,7 +8,7 @@ export default function HeadingProject(props: {
 	desc: string;
 }) {
 	return (
-		<div className={classes.header}>
+		<div className={`${classes.header} container`}>
 			<div className={classes.heading}>
 				<h2>
 					{props.first}

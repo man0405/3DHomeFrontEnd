@@ -10,7 +10,7 @@ export default function Interior(props: {
 	name: string;
 }) {
 	return (
-		<div className={classes.item}>
+		<div className={`${classes.item} interior`}>
 			<img src={props.img} alt="" />
 			<div className={classes.det}>
 				<div className={classes.category}>
