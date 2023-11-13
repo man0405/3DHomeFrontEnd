@@ -1,5 +1,14 @@
+"use client";
+import Profile from "@/components/Profile/Profile";
+import BookMark from "@/components/Profile/BookMark";
+
 const ProfilePage = () => {
-	return <h1>Profile Page</h1>;
+	return (
+		<>
+			<Profile />
+			<BookMark />
+		</>
+	);
 };
 
 export default ProfilePage;

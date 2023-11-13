@@ -114,6 +114,9 @@ input[type="text"]:focus {
 	width: fit-content;
 	cursor: pointer;
 }
+.navActive {
+	color: #1a73e8;
+}
 
 .underline {
 	text-decoration: underline;

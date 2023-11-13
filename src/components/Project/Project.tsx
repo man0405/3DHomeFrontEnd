@@ -18,7 +18,7 @@ const Project = (props: {
 				<h3>{props.name}</h3>
 				<p>{props.desc}</p>
 				<div className="button">
-					<Link href={`project/${props.id}`}>
+					<Link href={`/home/project/${props.id}`}>
 						VIEW MORE <IoArrowForwardOutline />{" "}
 					</Link>
 				</div>
