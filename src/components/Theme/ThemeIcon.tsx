@@ -1,5 +1,6 @@
 "use client";
 import { MdNightsStay, MdSunny } from "react-icons/md";
+import { setCookie } from "cookies-next";
 
 import classes from "./ThemeIcon.module.css";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -16,6 +17,7 @@ const ThemeIcon = ({ theme }: { theme: boolean }) => {
 
 	const toggleStyle = () => {
 		dispatch(themeAction.toggle());
+		setCookie("theme", !appUseSelection ? "light" : "dark");
 		document.body.classList.toggle("dark", appUseSelection);
 	};
 

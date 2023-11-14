@@ -12,6 +12,7 @@ const nextConfig = {
 			},
 		],
 	},
+	compiler: {},
 };
 
 module.exports = nextConfig;

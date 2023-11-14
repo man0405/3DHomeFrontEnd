@@ -139,6 +139,13 @@ input[type="text"]:focus {
 	animation: load89234 2s infinite;
 }
 
+/* Error */
+.error {
+	color: red !important;
+	outline: red !important;
+	border-color: red !important;
+}
+
 /* Slick  start */
 body .slick-arrow {
 	background: rgb(0 0 0 / 70%);
