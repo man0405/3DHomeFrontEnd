@@ -1,12 +1,88 @@
+"use client";
 import Image from "next/image";
+import { ChangeEventHandler, useState } from "react";
+
 import { FaHandsClapping } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 
+import { signup } from "../../dto/auth.dto";
+
 import classes from "./SignIn.module.css";
 import Card from "../ui/Card/Card";
-import Input from "../ui/Input/Input";
+import { FormEvent, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { useAppDispatch } from "@/redux/hooks";
+import { userAction } from "@/redux/user";
 
 const SignUp = () => {
+	const router = useRouter();
+	const [error, setError] = useState<null | {
+		message: string;
+		type: string;
+		code: string;
+	}>();
+
+	const [info, setInfo] = useState<{
+		email?: string;
+		password?: string;
+		confirm?: string;
+	}>();
+
+	const dispatch = useAppDispatch();
+
+	const inputChangeHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
+		return setInfo((prev) => {
+			return {
+				...prev,
+				[event.target.id]: event.target.value,
+			};
+		});
+	};
+
+	const submitHandler = async (e: FormEvent) => {
+		e.preventDefault();
+		if (info?.confirm && info?.email && info?.password) {
+			const { email, password, confirm } = info;
+			const validation = signup({ email, password, confirm });
+			if (validation) {
+				setError(validation);
+			} else {
+				setError(null);
+				try {
+					const res = await fetch(
+						`${process.env.NEXT_PUBLIC_API_URL}/api/v1/signup/check`,
+						{
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify({
+								email: email,
+								password: password,
+							}),
+						}
+					);
+					if (!res.ok) {
+						throw new Error("Something went wrong");
+					}
+					const data = await res.json();
+					if (data.result) {
+						dispatch(userAction.store({ email, password }));
+						router.push("/auth/signup/next-step");
+					} else {
+						setError({ message: data.message, code: data.code, type: "all" });
+						console.log({
+							message: data.message,
+							code: data.code,
+							type: "all",
+						});
+					}
+				} catch (error: any) {
+					setError({ message: error.message, type: "", code: "499" });
+				}
+			}
+		}
+	};
 	return (
 		<Card className={classes.box}>
 			<div className={classes.left}>
@@ -25,33 +101,73 @@ const SignUp = () => {
 					</h2>
 					<h5>We are happy to have you back</h5>
 				</div>
-				<form>
-					<Input
-						id="fullname"
-						name="Your fullname*"
-						type="text"
-						placeholder="Enter your name"
+				{error && <div className="error">{error.message}</div>}
+
+				<form onSubmit={submitHandler}>
+					<label
+						htmlFor={"email"}
+						className={`${classes.label} ${
+							error?.type === "email" || error?.code === "all" ? "error" : ""
+						}`}
+					>
+						Email address*
+					</label>
+					<input
+						className={`${classes.input} ${
+							error?.type === "email" || error?.code === "all" ? "error" : ""
+						}`}
+						onChange={inputChangeHandler}
 						required={true}
+						id={"email"}
+						type={"email"}
+						placeholder={"Enter email"}
 					/>
-					<Input
-						id="email"
-						name="Email address*"
-						type="email"
-						placeholder="Enter email"
+					<label
+						htmlFor={"password"}
+						className={`${classes.label} ${
+							error?.type === "password" || error?.code === "all" ? "error" : ""
+						}`}
+					>
+						Create password*
+					</label>
+					<input
+						className={`${classes.input} ${
+							error?.type === "password" || error?.code === "all" ? "error" : ""
+						}`}
+						onChange={inputChangeHandler}
 						required={true}
+						id={"password"}
+						type={"password"}
+						placeholder={"Create password"}
 					/>
-					<Input
-						id="password"
-						name="Create password*"
-						type="password"
+					<label
+						htmlFor={"confirm"}
+						className={`${classes.label} ${
+							error?.type === "confirmPassword" || error?.code === "all"
+								? "error"
+								: ""
+						}`}
+					>
+						Re-enter password*
+					</label>
+					<input
+						className={`${classes.input} ${
+							error?.type === "confirmPassword" || error?.code === "all"
+								? "error"
+								: ""
+						}`}
+						onChange={inputChangeHandler}
 						required={true}
-						placeholder="Create a password"
+						id={"confirm"}
+						type={"password"}
+						placeholder={"Re-enter password"}
 					/>
+
 					<div className={classes.term}>
-						<input type="checkbox" />
+						<input type="checkbox" required />
 						<label htmlFor="checkbox">I agree to terms & conditions</label>
 					</div>
-					<button className={`${classes.btn} ${classes.active} `}>
+					<button className={`${classes.btn} ${classes.active} `} type="submit">
 						Register Account
 					</button>
 					<p>Or</p>
