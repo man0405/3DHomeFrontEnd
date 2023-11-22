@@ -42,6 +42,7 @@ const SignIn = () => {
 							headers: {
 								"Content-Type": "application/json",
 							},
+							credentials: "include",
 							body: JSON.stringify({
 								email: email,
 								password: password,
@@ -51,9 +52,10 @@ const SignIn = () => {
 					if (!res.ok) {
 						throw new Error("Something went wrong");
 					}
+
 					const data = await res.json();
-					if (data.token) {
-						setCookie("uss", data.token, { maxAge: 60 * 60 });
+					console.log(data);
+					if (data.result === "true") {
 						router.push("/home");
 					} else {
 						setError({ message: data.message, code: data.code, type: "all" });
