@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import classes from "./SignIn.module.css";
 import Card from "../ui/Card/Card";
+import Loader from "../ui/Loader/Loader";
 import { useAppSelector } from "@/redux/hooks";
 import { ChangeEventHandler, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -12,6 +13,7 @@ import { infoCheck } from "@/dto/auth.dto";
 const NextSignUp = () => {
 	const router = useRouter();
 	const appUseSelection = useAppSelector((state) => state.user);
+	const [loading, setLoading] = useState(false);
 	const [info, setInfo] = useState<{
 		email?: string;
 		password?: string;
@@ -72,6 +74,7 @@ const NextSignUp = () => {
 				return;
 			}
 			try {
+				setLoading(true);
 				const response = await fetch(
 					`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/signup`,
 					{
@@ -104,11 +107,13 @@ const NextSignUp = () => {
 			} catch (error: any) {
 				setError({ message: error.message, type: "", code: "499" });
 			}
+			setLoading(false);
 		}
 	};
 
 	return (
 		<>
+			{loading && <Loader />}
 			{!finish && (
 				<Card className={classes.box}>
 					<div className={classes.left}>

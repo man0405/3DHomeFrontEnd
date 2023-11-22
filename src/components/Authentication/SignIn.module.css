@@ -12,6 +12,13 @@
 	width: 30%;
 	margin-left: 10rem;
 }
+.left button {
+	cursor: pointer;
+}
+
+.left button:hover {
+	opacity: 0.9;
+}
 
 .logo {
 	display: flex;
