@@ -20,6 +20,7 @@ const SignIn = () => {
 		type: string;
 		code: string;
 	}>();
+
 	const submitHandler = async (event: React.FormEvent) => {
 		event.preventDefault();
 		console.log("Submit");
@@ -33,7 +34,7 @@ const SignIn = () => {
 				setError(null);
 				try {
 					const res = await fetch(
-						`${process.env.NEXT_PUBLIC_API_URL}/api/v1/signin`,
+						`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/signin`,
 						{
 							method: "POST",
 							headers: {

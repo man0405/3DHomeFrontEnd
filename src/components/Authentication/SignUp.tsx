@@ -50,7 +50,7 @@ const SignUp = () => {
 				setError(null);
 				try {
 					const res = await fetch(
-						`${process.env.NEXT_PUBLIC_API_URL}/api/v1/signup/check`,
+						`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/signup/check`,
 						{
 							method: "POST",
 							headers: {
@@ -66,7 +66,7 @@ const SignUp = () => {
 						throw new Error("Something went wrong");
 					}
 					const data = await res.json();
-					if (data.result) {
+					if (data.result === "true") {
 						dispatch(userAction.store({ email, password }));
 						router.push("/auth/signup/next-step");
 					} else {
