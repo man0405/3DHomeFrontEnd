@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { use, useState } from "react";
 import Image from "next/image";
 import { IoChevronForward } from "react-icons/io5";
 
@@ -8,9 +8,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import classes from "./ProjectDetail.module.css";
+import { BiArea } from "react-icons/bi";
+import { GrDirections } from "react-icons/gr";
+import { MdOutlineBedroomParent } from "react-icons/md";
+import { IoPricetagOutline } from "react-icons/io5";
+import { BsBuilding } from "react-icons/bs";
+import { TbToiletPaper } from "react-icons/tb";
 
 import HeadingProject from "@/components/ui/type/HeadingProject";
 import Interior from "./Interior";
+import ShowModal from "@/components/ui/Modal/ShowModal";
 
 const DUMMY_DATA = {
 	name: "DUMMY Project",
@@ -75,8 +82,17 @@ export default function ProjectDetail() {
 	const second = DUMMY_DATA.name
 		.slice(first.length + 1, DUMMY_DATA.name.length)
 		.toUpperCase();
+
+	const [modal, setModal] = useState(false);
+	const onConfirm = () => {
+		setModal(false);
+	};
+	const clickHandler = () => {
+		setModal(true);
+	};
 	return (
 		<>
+			{modal && <ShowModal onConfirm={onConfirm} />}
 			<HeadingProject first={first} second={second} desc={DUMMY_DATA.desc} />
 			<div className={classes.detail}>
 				<div className={`${classes.image} container`}>
@@ -113,36 +129,61 @@ export default function ProjectDetail() {
 				</div>
 				<div className={`container ${classes.price}`}>
 					<div className={classes.subtile}>Price Detail</div>
-					<table className={classes.table}>
-						<tbody>
-							<tr>
-								<td>Option fermentum</td>
-								<td>$600 - $1150</td>
-							</tr>
-							<tr>
-								<td>Option metus tellus</td>
-								<td>$250 - $350</td>
-							</tr>
-							<tr>
-								<td>Option gravida</td>
-								<td>$43.50 - $93.50</td>
-							</tr>
-							<tr>
-								<td>Option eiusmod</td>
-								<td>$1350 - $2350</td>
-							</tr>
-							<tr>
-								<td>Option tempor</td>
-								<td>$500</td>
-							</tr>
-						</tbody>
-					</table>
+					<div className={classes["more-inf"]}>
+						<table className={classes.table}>
+							<tbody>
+								<tr>
+									<td>
+										<BiArea /> Land Size
+									</td>
+									<td>
+										3000 m<sup>2</sup>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<GrDirections /> Facing Direction
+									</td>
+									<td>Southeast</td>
+								</tr>
+								<tr>
+									<td>
+										<MdOutlineBedroomParent /> Bedrooms
+									</td>
+									<td>5</td>
+								</tr>
+							</tbody>
+						</table>
+						<table className={classes.table}>
+							<tbody>
+								<tr>
+									<td>
+										<IoPricetagOutline /> Price
+									</td>
+									<td>$ 3000 - $ 5000</td>
+								</tr>
+
+								<tr>
+									<td>
+										<BsBuilding /> Floor
+									</td>
+									<td>3</td>
+								</tr>
+								<tr>
+									<td>
+										<TbToiletPaper /> Toilet
+									</td>
+									<td>4</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 				<div className={`container ${classes.order}`}>
 					<div className={classes.ready}>
 						<h3>Ready to Order your Project ?</h3>
 					</div>
-					<div className={classes["get-order"]}>
+					<div className={classes["get-order"]} onClick={clickHandler}>
 						Get In Touch
 						<IoChevronForward />
 					</div>

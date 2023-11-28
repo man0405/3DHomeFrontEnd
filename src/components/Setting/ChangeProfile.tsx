@@ -255,10 +255,12 @@ export default function ChangeProfile() {
 	};
 	return (
 		<form onSubmit={submitHandler} className={classes.form}>
-			<label htmlFor="name">Name</label>
-			<input type="text" id="name" />
+			<label htmlFor="firstName">First Name</label>
+			<input type="text" id="firstName" />
+			<label htmlFor="lastName">Last Name</label>
+			<input type="text" id="lastName" />
 			<label htmlFor="date">Date</label>
-			<input type="date" id="name" />
+			<input type="date" id="date" />
 			<label htmlFor="country">Country</label>
 			<select id="country">
 				{DEFAULT_COUNTRY.map((country) => (

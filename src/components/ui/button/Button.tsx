@@ -3,7 +3,7 @@ interface uiElement {
 }
 
 interface props extends uiElement {
-	onClick: () => {};
+	onClick?: () => {};
 	children: React.ReactNode;
 }
 

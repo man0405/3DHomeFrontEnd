@@ -9,3 +9,7 @@
 .item:hover {
 	background-color: var(--destructive-foreground);
 }
+
+.item a {
+	flex: 1k;
+}

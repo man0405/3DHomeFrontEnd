@@ -7,7 +7,7 @@
 	z-index: 3;
 	width: 30rem;
 	right: 0;
-	bottom: -700%;
+	top: 6rem;
 	background-color: var(--card);
 	border: 1px solid var(--border);
 	border-radius: var(--radius);

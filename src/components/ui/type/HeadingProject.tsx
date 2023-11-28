@@ -17,9 +17,6 @@ export default function HeadingProject(props: {
 				</h2>
 				<h4>{props.desc}</h4>
 			</div>
-			<div className={classes["book-mark"]}>
-				<BsBookmarkFill />
-			</div>
 		</div>
 	);
 }

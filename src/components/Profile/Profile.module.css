@@ -2,9 +2,11 @@
 	margin-top: 2.5rem;
 }
 
-.back {
-	border-radius: var(--radius);
+.back-ground {
+	background-color: rgb(183, 156, 176);
+	width: 100%;
 	height: 35rem;
+	border-radius: 1.6rem;
 }
 
 .avatar {

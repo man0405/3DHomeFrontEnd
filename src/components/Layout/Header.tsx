@@ -2,12 +2,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { BiUserCircle } from "react-icons/bi";
 import User from "../User/User";
 
 import classes from "./Header.module.css";
 import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
 
 const Header = () => {
 	const path = usePathname();
@@ -48,7 +46,12 @@ const Header = () => {
 				</ul>
 			</nav>
 			<div className={classes.user}>
-				<BiUserCircle />
+				<Image
+					src={"/assets/images/photo-1580216643062-cf460548a66a.webp"}
+					alt="avatar"
+					width={50}
+					height={50}
+				/>
 				<User />
 			</div>
 		</header>

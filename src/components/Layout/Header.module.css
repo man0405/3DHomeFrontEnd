@@ -72,6 +72,12 @@
 	position: relative;
 }
 
+.user img {
+	width: 4.3rem;
+	height: 4.3rem;
+	border-radius: 50%;
+}
+
 .user:hover > ul {
 	display: flex;
 }
@@ -81,7 +87,6 @@
 	content: "";
 	display: block;
 	right: 0;
-
 	width: 10rem;
 	height: 10rem;
 }
