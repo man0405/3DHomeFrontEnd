@@ -168,3 +168,28 @@
 .get-order svg {
 	margin-left: 2rem;
 }
+
+.owner {
+	display: flex;
+	align-items: center;
+	margin-bottom: 5rem;
+	border: 1px solid var(--border);
+}
+.avatar img {
+	width: 10rem;
+	height: 10rem;
+	border-radius: 100rem;
+}
+
+.info {
+	padding-left: 5rem;
+	display: flex;
+	height: 8rem;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.name {
+	font-weight: 2.4rem;
+	font-weight: 900;
+}

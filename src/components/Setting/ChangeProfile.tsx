@@ -1,6 +1,7 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import classes from "./Change.module.css";
+import { useFetch } from "@/hook/useFetch";
 
 const DEFAULT_COUNTRY = [
 	"Afghanistan",
@@ -250,19 +251,40 @@ const DEFAULT_COUNTRY = [
 ];
 
 export default function ChangeProfile() {
-	const submitHandler = (e: React.FormEvent) => {
+	const [dataForm, setDataForm] = useState({});
+	const { data, loading, error, fetchData } = useFetch();
+	const submitHandler = async (e: React.FormEvent) => {
 		e.preventDefault();
+
+		fetchData({
+			method: "PUT",
+			link: "api/v1/profile",
+			body: dataForm,
+		});
+		console.log("file: ChangeProfile.tsx:264 ~ submitHandler ~ res:", {
+			data,
+			loading,
+			error,
+		});
+	};
+	const handleChange = (
+		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+	) => {
+		setDataForm((prev) => ({
+			...prev,
+			[e.target.id]: e.target.value,
+		}));
 	};
 	return (
 		<form onSubmit={submitHandler} className={classes.form}>
 			<label htmlFor="firstName">First Name</label>
-			<input type="text" id="firstName" />
+			<input type="text" id="firstName" onChange={handleChange} />
 			<label htmlFor="lastName">Last Name</label>
-			<input type="text" id="lastName" />
+			<input type="text" id="lastName" onChange={handleChange} />
 			<label htmlFor="date">Date</label>
-			<input type="date" id="date" />
+			<input type="date" id="dob" onChange={handleChange} />
 			<label htmlFor="country">Country</label>
-			<select id="country">
+			<select id="country" onChange={handleChange}>
 				{DEFAULT_COUNTRY.map((country) => (
 					<option key={country} value={country}>
 						{country}

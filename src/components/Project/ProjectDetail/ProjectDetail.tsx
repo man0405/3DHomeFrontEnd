@@ -20,6 +20,10 @@ import Interior from "./Interior";
 import ShowModal from "@/components/ui/Modal/ShowModal";
 
 const DUMMY_DATA = {
+	owner: "Thinh Mai",
+	avatar: "/assets/images/photo-1493606371202-6275828f90f3.webp",
+	phone: "0339228240",
+	email: "man@gmail.com",
 	name: "DUMMY Project",
 	desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet, consectetur adipiscing elit sed, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
 	src: "/assets/images/photo-1493606371202-6275828f90f3.webp",
@@ -177,6 +181,16 @@ export default function ProjectDetail() {
 								</tr>
 							</tbody>
 						</table>
+					</div>
+				</div>
+				<div className={` container ${classes.owner} `}>
+					<div className={classes.avatar}>
+						<img src={DUMMY_DATA.avatar} alt="" />
+					</div>
+					<div className={classes.info}>
+						<div className={classes.name}>{DUMMY_DATA.owner}</div>
+						<div className={classes.phone}>{DUMMY_DATA.phone}</div>
+						<div className={classes.email}>{DUMMY_DATA.email}</div>
 					</div>
 				</div>
 				<div className={`container ${classes.order}`}>

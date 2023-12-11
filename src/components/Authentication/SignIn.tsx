@@ -52,10 +52,11 @@ const SignIn = () => {
 					if (!res.ok) {
 						throw new Error("Something went wrong");
 					}
-
 					const data = await res.json();
-					console.log(data);
+					console.log("file: SignIn.tsx:56 ~ submitHandler ~ data:", data);
+
 					if (data.result === "true") {
+						console.log("first result");
 						router.push("/home");
 					} else {
 						setError({ message: data.message, code: data.code, type: "all" });

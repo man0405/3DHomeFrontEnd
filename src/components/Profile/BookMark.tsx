@@ -44,7 +44,7 @@ const DUMMY_DATA = {
 export default function BookMark() {
 	return (
 		<section className={`container ${classes.saved}`}>
-			<h1>Saved Project</h1>
+			<h1>Seen Project</h1>
 			<ProjectList data={DUMMY_DATA.data} />
 		</section>
 	);

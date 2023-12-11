@@ -1,6 +1,5 @@
 import React from "react";
 import classes from "./HeadingProject.module.css";
-import { BsBookmarkFill } from "react-icons/bs";
 
 export default function HeadingProject(props: {
 	first: string;
