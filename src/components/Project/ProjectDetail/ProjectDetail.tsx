@@ -18,6 +18,7 @@ import { TbToiletPaper } from "react-icons/tb";
 import HeadingProject from "@/components/ui/type/HeadingProject";
 import Interior from "./Interior";
 import ShowModal from "@/components/ui/Modal/ShowModal";
+import { HouseInfo } from "@/util/type";
 
 const DUMMY_DATA = {
 	owner: "Thinh Mai",
@@ -49,7 +50,6 @@ const DUMMY_DATA = {
 		{
 			id: 3,
 			img: "/assets/images/photo-1515263487990-61b07816b324.webp",
-
 			category: "Japadi",
 			name: "Attack My Japadi",
 			link: "/....",
@@ -73,7 +73,7 @@ const DUMMY_DATA = {
 	],
 };
 
-export default function ProjectDetail() {
+export default function ProjectDetail(props: { data: HouseInfo }) {
 	const settings = {
 		classesName: "center",
 		centerMode: true,
@@ -82,9 +82,13 @@ export default function ProjectDetail() {
 		slidesToShow: 2,
 		speed: 500,
 	};
-	const first = DUMMY_DATA.name.split(" ")[0].toUpperCase();
-	const second = DUMMY_DATA.name
-		.slice(first.length + 1, DUMMY_DATA.name.length)
+	// const first = DUMMY_DATA.name.split(" ")[0].toUpperCase();
+	// const second = DUMMY_DATA.name
+	// 	.slice(first.length + 1, DUMMY_DATA.name.length)
+	// 	.toUpperCase();
+	const first = props.data.name.split(" ")[0].toUpperCase();
+	const second = props.data.name
+		.slice(first.length + 1, props.data.name.length)
 		.toUpperCase();
 
 	const [modal, setModal] = useState(false);
@@ -97,11 +101,29 @@ export default function ProjectDetail() {
 	return (
 		<>
 			{modal && <ShowModal onConfirm={onConfirm} />}
-			<HeadingProject first={first} second={second} desc={DUMMY_DATA.desc} />
+			<HeadingProject
+				first={first}
+				second={second}
+				desc={
+					props.data.name.toUpperCase() +
+					" " +
+					props.data.information.street.toUpperCase() +
+					" " +
+					props.data.information.district?.toUpperCase() +
+					" " +
+					props.data.information.city.toUpperCase() +
+					" " +
+					props.data.information.country.toUpperCase()
+				}
+			/>
 			<div className={classes.detail}>
 				<div className={`${classes.image} container`}>
 					<Image
-						src={DUMMY_DATA.src}
+						src={
+							props.data.images[0]
+								? props.data.images[0].getPath
+								: process.env.NEXT_PUBLIC_ERROR_IMAGE
+						}
 						alt="Hellos"
 						width={1000}
 						height={500}
@@ -110,8 +132,8 @@ export default function ProjectDetail() {
 				<div className={`${classes["working-process"]} container`}>
 					<div className={classes.subtile}>Working Process</div>
 					<div className={classes.description}>
-						<p>{DUMMY_DATA["process-1"]}</p>
-						<p>{DUMMY_DATA["process-2"]}</p>
+						<p>{props.data.description}</p>
+						{/* <p>{DUMMY_DATA["process-2"]}</p> */}
 						<div className={classes.get}>
 							<span>What You Get: </span>
 							<ul>
@@ -126,9 +148,20 @@ export default function ProjectDetail() {
 					<div className={`${classes.subtile} container`}>Interior Service</div>
 
 					<Slider {...settings}>
-						{DUMMY_DATA.interior.map((item) => (
+						{/* {DUMMY_DATA.interior.map((item) => (
 							<Interior {...item} key={item.id} />
-						))}
+						))} */}
+						{props.data.images.map((item, index) => {
+							if (index != 0) {
+								const temp = {
+									category: DUMMY_DATA.interior[index - 1]?.category,
+									img: item.getPath,
+									name: DUMMY_DATA.interior[index - 1]?.name,
+								};
+
+								return <Interior {...temp} key={item.id} />;
+							}
+						})}
 					</Slider>
 				</div>
 				<div className={`container ${classes.price}`}>
@@ -141,20 +174,20 @@ export default function ProjectDetail() {
 										<BiArea /> Land Size
 									</td>
 									<td>
-										3000 m<sup>2</sup>
+										{props.data.information.landSize} m<sup>2</sup>
 									</td>
 								</tr>
 								<tr>
 									<td>
 										<GrDirections /> Facing Direction
 									</td>
-									<td>Southeast</td>
+									<td>{props.data.information.direction}</td>
 								</tr>
 								<tr>
 									<td>
 										<MdOutlineBedroomParent /> Bedrooms
 									</td>
-									<td>5</td>
+									<td>{props.data.information.bedrooms}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -164,20 +197,22 @@ export default function ProjectDetail() {
 									<td>
 										<IoPricetagOutline /> Price
 									</td>
-									<td>$ 3000 - $ 5000</td>
+									<td>
+										$ {props.data.price} - $ {props.data.price + 5000}
+									</td>
 								</tr>
 
 								<tr>
 									<td>
 										<BsBuilding /> Floor
 									</td>
-									<td>3</td>
+									<td>{props.data.information.numberOfFloor}</td>
 								</tr>
 								<tr>
 									<td>
 										<TbToiletPaper /> Toilet
 									</td>
-									<td>4</td>
+									<td>{props.data.information.toilets}</td>
 								</tr>
 							</tbody>
 						</table>

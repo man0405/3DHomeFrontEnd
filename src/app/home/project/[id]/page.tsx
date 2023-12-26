@@ -1,10 +1,24 @@
+"use client";
 import ProjectDetail from "@/components/Project/ProjectDetail/ProjectDetail";
+import { useFetch } from "@/hook/useFetch";
+import { useParams } from "next/navigation";
+import { useEffect } from "react";
+import { HouseInfo } from "@/util/type";
 
 const ProjectDetailPage = () => {
+	const pathname = useParams();
+	const { data, loading, error, fetchData } = useFetch<HouseInfo>();
+	useEffect(() => {
+		fetchData({ method: "GET", link: `house/id/${pathname.id}` });
+	}, [pathname.id]);
 	return (
-		<section>
-			<ProjectDetail />
-		</section>
+		<>
+			{data && (
+				<section>
+					<ProjectDetail data={data} />
+				</section>
+			)}
+		</>
 	);
 };
 

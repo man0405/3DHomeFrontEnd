@@ -11,10 +11,13 @@ export default function Interior(props: {
 }) {
 	return (
 		<div className={`${classes.item} interior`}>
-			<img src={props.img} alt="" />
+			<img
+				src={props.img ? props.img : process.env.NEXT_PUBLIC_ERROR_IMAGE}
+				alt=""
+			/>
 			<div className={classes.det}>
 				<div className={classes.category}>
-					<span>{props.category.toUpperCase()}</span>
+					<span>{props.category?.toUpperCase()}</span>
 					<span>INTERIOR</span>
 				</div>
 				<div className={classes.more}>

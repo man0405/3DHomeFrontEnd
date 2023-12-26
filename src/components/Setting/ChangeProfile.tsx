@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import classes from "./Change.module.css";
 import { useFetch } from "@/hook/useFetch";
+import { ShowModalDemo } from "../ui/Modal/ShowModal";
+import AlertModal from "../ui/Modal/AlertModal";
 
 const DEFAULT_COUNTRY = [
 	"Afghanistan",
@@ -252,6 +254,7 @@ const DEFAULT_COUNTRY = [
 
 export default function ChangeProfile() {
 	const [dataForm, setDataForm] = useState({});
+	const [confirm, setConfirm] = useState(false);
 	const { data, loading, error, fetchData } = useFetch();
 	const submitHandler = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -261,11 +264,10 @@ export default function ChangeProfile() {
 			link: "api/v1/profile",
 			body: dataForm,
 		});
-		console.log("file: ChangeProfile.tsx:264 ~ submitHandler ~ res:", {
-			data,
-			loading,
-			error,
-		});
+		setConfirm(true);
+	};
+	const onConfirm = () => {
+		setConfirm(false);
 	};
 	const handleChange = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -275,25 +277,32 @@ export default function ChangeProfile() {
 			[e.target.id]: e.target.value,
 		}));
 	};
+
 	return (
-		<form onSubmit={submitHandler} className={classes.form}>
-			<label htmlFor="firstName">First Name</label>
-			<input type="text" id="firstName" onChange={handleChange} />
-			<label htmlFor="lastName">Last Name</label>
-			<input type="text" id="lastName" onChange={handleChange} />
-			<label htmlFor="date">Date</label>
-			<input type="date" id="dob" onChange={handleChange} />
-			<label htmlFor="country">Country</label>
-			<select id="country" onChange={handleChange}>
-				{DEFAULT_COUNTRY.map((country) => (
-					<option key={country} value={country}>
-						{country}
-					</option>
-				))}
-			</select>
-			<button className="button" type="submit">
-				Save Changes
-			</button>
-		</form>
+		<>
+			``
+			{data && confirm && (
+				<ShowModalDemo onConfirm={onConfirm} element={<AlertModal />} />
+			)}
+			<form onSubmit={submitHandler} className={classes.form}>
+				<label htmlFor="firstName">First Name</label>
+				<input type="text" id="firstName" onChange={handleChange} />
+				<label htmlFor="lastName">Last Name</label>
+				<input type="text" id="lastName" onChange={handleChange} />
+				<label htmlFor="date">Date</label>
+				<input type="date" id="dob" onChange={handleChange} />
+				<label htmlFor="country">Country</label>
+				<select id="country" onChange={handleChange}>
+					{DEFAULT_COUNTRY.map((country) => (
+						<option key={country} value={country}>
+							{country}
+						</option>
+					))}
+				</select>
+				<button className="button" type="submit">
+					Save Changes
+				</button>
+			</form>
+		</>
 	);
 }

@@ -2,10 +2,13 @@
 import React, { useState } from "react";
 import classes from "./Change.module.css";
 import { useFetch } from "@/hook/useFetch";
+import { ShowModalDemo } from "../ui/Modal/ShowModal";
+import AlertModal from "../ui/Modal/AlertModal";
 
 export default function ChangePassword() {
 	const [dataForm, setDataForm] = useState({});
 	const { data, loading, error, fetchData } = useFetch();
+	const [confirm, setConfirm] = useState(false);
 
 	const submitHandler = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -14,11 +17,10 @@ export default function ChangePassword() {
 			body: dataForm,
 			link: "api/v1/password",
 		});
-		console.log("file: ChangePassword.tsx:15 ~ submitHandler ~ res:", {
-			data,
-			loading,
-			error,
-		});
+		setConfirm(true);
+	};
+	const onConfirm = () => {
+		setConfirm(false);
 	};
 	const handleChange = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -29,16 +31,21 @@ export default function ChangePassword() {
 		}));
 	};
 	return (
-		<form onSubmit={submitHandler} className={classes.form}>
-			<label htmlFor="oldPassword">Old Password</label>
-			<input type="password" id="oldPassword" onChange={handleChange} />
-			<label htmlFor="newPassword">New Password</label>
-			<input type="password" id="newPassword" onChange={handleChange} />
-			<label htmlFor="againNewPassword">Again New Password</label>
-			<input type="password" id="againNewPassword" onChange={handleChange} />
-			<button className="button" type="submit">
-				Save Changes
-			</button>
-		</form>
+		<>
+			{data && confirm && (
+				<ShowModalDemo onConfirm={onConfirm} element={<AlertModal />} />
+			)}
+			<form onSubmit={submitHandler} className={classes.form}>
+				<label htmlFor="oldPassword">Old Password</label>
+				<input type="password" id="oldPassword" onChange={handleChange} />
+				<label htmlFor="newPassword">New Password</label>
+				<input type="password" id="newPassword" onChange={handleChange} />
+				<label htmlFor="againNewPassword">Again New Password</label>
+				<input type="password" id="againNewPassword" onChange={handleChange} />
+				<button className="button" type="submit">
+					Save Changes
+				</button>
+			</form>
+		</>
 	);
 }

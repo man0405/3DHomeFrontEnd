@@ -1,9 +1,12 @@
 "use client";
 import Heading from "@/components/ui/type/Heading";
 import Function from "@/components/Function/Function";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import ProjectList from "@/components/Project/ProjectList";
 import Loading from "./loading";
+import { useFetch } from "@/hook/useFetch";
+import { useSearchParams } from "next/navigation";
+import { RootObject } from "@/util/type";
 
 const DUMMY_DATA = {
 	page: 1,
@@ -44,15 +47,35 @@ const DUMMY_DATA = {
 };
 
 const ProjectPage = () => {
+	const { data, loading, error, fetchData } = useFetch<RootObject>();
+	const searchParams = useSearchParams();
+	const search = searchParams.get("page");
+	const page = search ? parseInt(search) : 1;
+
+	useEffect(() => {
+		console.log("file: page.tsx:56 ~ ProjectPage ~ page:", page);
+		fetchData({ method: "GET", link: `house/pagination/${page}/5/id` });
+	}, [page]);
+
+	if (loading) return <div>Loading...</div>;
+	if (error) return <div>Error: {error}</div>;
+
 	return (
-		<section className="container">
-			<Heading first="Our" second="Project" />
-			<Suspense fallback={<Loading />}>
-				<ProjectList data={DUMMY_DATA.data} />
-			</Suspense>
-			<Function page={DUMMY_DATA.page} total={DUMMY_DATA.total} />
-		</section>
+		<>
+			{data && (
+				<section className="container">
+					<Heading first="Our" second="Project" />
+					<Suspense fallback={<Loading />}>
+						{/* <ProjectList data={DUMMY_DATA.data} /> */}
+						<ProjectList data={data.response.content} />
+					</Suspense>
+					<Function
+						page={data.response.pageable.pageNumber + 1}
+						total={data.response.totalPages}
+					/>
+				</section>
+			)}
+		</>
 	);
 };
-
 export default ProjectPage;

@@ -1,8 +1,7 @@
 import Project from "./Project";
 import classes from "./ProjectList.module.css";
-const ProjectList = (props: {
-	data: { id: number; name: string; desc: string; image: string }[];
-}) => {
+import { HouseInfo } from "@/util/type";
+const ProjectList = (props: { data: HouseInfo[] }) => {
 	return (
 		<div className={classes.list}>
 			<ul>
@@ -11,8 +10,12 @@ const ProjectList = (props: {
 						key={item.id}
 						id={item.id}
 						name={item.name}
-						desc={item.desc}
-						image={item.image}
+						desc={item.description}
+						image={
+							item.images[0]
+								? item.images[0].getPath
+								: "/assets/images/photo-1545324418-cc1a3fa10c00.webp"
+						}
 					/>
 				))}
 			</ul>

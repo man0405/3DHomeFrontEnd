@@ -1,3 +1,4 @@
+"use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import useCreateQuery from "@/hook/useCreateQuery";
 import { IoArrowForwardOutline, IoArrowBackOutline } from "react-icons/io5";
@@ -19,6 +20,17 @@ const Function = (props: { page: number; total: number }) => {
 				)
 		);
 	};
+	const nextHandler = () => {
+		router.push(
+			pathname +
+				"?" +
+				createQueryString(
+					"page",
+					props.page + 1 > props.total ? 1 : props.page + 1
+				)
+		);
+	};
+
 	return (
 		<div className={classes.function}>
 			<div className={classes.number}>
@@ -31,14 +43,14 @@ const Function = (props: { page: number; total: number }) => {
 						</>
 					) : (
 						<>
-							<span>{props.page / 10}</span>
+							<span>{Math.floor(props.page / 10)}</span>
 							<br />
 							<span>{props.page % 10}</span>
 						</>
 					)}
 				</div>
 				<div className={classes.total}>
-					{props.page < 10 ? (
+					{props.total < 10 ? (
 						<>
 							0
 							<br />
@@ -46,7 +58,7 @@ const Function = (props: { page: number; total: number }) => {
 						</>
 					) : (
 						<>
-							<span>{props.total / 10}</span>
+							<span>{Math.floor(props.total / 10)}</span>
 							<br />
 							<span>{props.total % 10}</span>
 						</>
@@ -56,7 +68,7 @@ const Function = (props: { page: number; total: number }) => {
 			<div className={`${classes.prev} button`} onClick={prevHandler}>
 				<IoArrowBackOutline />
 			</div>
-			<div className={`${classes.next} button`}>
+			<div className={`${classes.next} button`} onClick={nextHandler}>
 				<IoArrowForwardOutline />
 			</div>
 		</div>

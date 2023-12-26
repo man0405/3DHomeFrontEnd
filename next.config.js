@@ -13,6 +13,7 @@ const nextConfig = {
 		],
 	},
 	compiler: {},
+	reactStrictMode: false,
 };
 
 module.exports = nextConfig;
