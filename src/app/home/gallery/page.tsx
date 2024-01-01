@@ -9,6 +9,8 @@ import Heading from "@/components/ui/type/Heading";
 import Function from "@/components/Function/Function";
 
 import Loading from "./loading";
+import { useFetch } from "@/hook/useFetch";
+import { ApiResponse } from "@/util/type";
 
 const DUMMY_DATA = {
 	page: 1,
@@ -60,17 +62,30 @@ const DUMMY_DATA = {
 
 const GalleryPage = () => {
 	const searchParams = useSearchParams()!;
+	const { data, loading, fetchData, error } = useFetch<ApiResponse>();
 
-	const page = searchParams.get("page");
-	useEffect(() => {}, [page]);
+	const page = searchParams.get("page") == null ? 1 : searchParams.get("page");
+	useEffect(() => {
+		fetchData({
+			method: "GET",
+			link: `image/library?page=${page}`,
+		});
+	}, [page]);
 
 	return (
 		<section className="container">
 			<Heading first="Photo" second="Gallery" />
-			<Suspense fallback={<Loading />}>
-				<Gallery data={DUMMY_DATA.data} />
-			</Suspense>
-			<Function page={DUMMY_DATA.page} total={DUMMY_DATA.total} />
+			{data && (
+				<>
+					<Suspense fallback={<Loading />}>
+						<Gallery data={data?.response.content} />
+					</Suspense>
+					<Function
+						page={data.response.pageable.pageNumber + 1}
+						total={data.response.totalPages}
+					/>
+				</>
+			)}
 		</section>
 	);
 };

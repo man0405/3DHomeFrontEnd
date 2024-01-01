@@ -19,6 +19,7 @@ import HeadingProject from "@/components/ui/type/HeadingProject";
 import Interior from "./Interior";
 import ShowModal from "@/components/ui/Modal/ShowModal";
 import { HouseInfo } from "@/util/type";
+import { useFetch } from "@/hook/useFetch";
 
 const DUMMY_DATA = {
 	owner: "Thinh Mai",
@@ -82,10 +83,9 @@ export default function ProjectDetail(props: { data: HouseInfo }) {
 		slidesToShow: 2,
 		speed: 500,
 	};
-	// const first = DUMMY_DATA.name.split(" ")[0].toUpperCase();
-	// const second = DUMMY_DATA.name
-	// 	.slice(first.length + 1, DUMMY_DATA.name.length)
-	// 	.toUpperCase();
+
+	const { data, loading, error, fetchData } = useFetch();
+
 	const first = props.data.name.split(" ")[0].toUpperCase();
 	const second = props.data.name
 		.slice(first.length + 1, props.data.name.length)
@@ -96,6 +96,7 @@ export default function ProjectDetail(props: { data: HouseInfo }) {
 		setModal(false);
 	};
 	const clickHandler = () => {
+		fetchData({ method: "PUT", link: `house/leave-info/${props.data.id}` });
 		setModal(true);
 	};
 	return (
@@ -120,9 +121,8 @@ export default function ProjectDetail(props: { data: HouseInfo }) {
 				<div className={`${classes.image} container`}>
 					<Image
 						src={
-							props.data.images[0]
-								? props.data.images[0].getPath
-								: process.env.NEXT_PUBLIC_ERROR_IMAGE
+							props.data.images[0]?.getPath ??
+							process.env.NEXT_PUBLIC_ERROR_IMAGE
 						}
 						alt="Hellos"
 						width={1000}
@@ -157,6 +157,7 @@ export default function ProjectDetail(props: { data: HouseInfo }) {
 									category: DUMMY_DATA.interior[index - 1]?.category,
 									img: item.getPath,
 									name: DUMMY_DATA.interior[index - 1]?.name,
+									src: item.src,
 								};
 
 								return <Interior {...temp} key={item.id} />;

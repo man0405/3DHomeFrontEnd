@@ -42,11 +42,22 @@ interface Response {
 	numberOfElements: number;
 	empty: boolean;
 }
+
+interface Images {
+	filePath: string;
+	getPath: string;
+	id: number;
+	main: boolean;
+	name: string;
+	src: string;
+	type: string;
+}
+
 export interface HouseInfo {
 	price: number;
 	information: Information;
 	customers: any[];
-	images: any[];
+	images: Images[];
 	src: string;
 	name: string;
 	description: string;
@@ -65,4 +76,39 @@ export interface customPage<T> {
 export interface RootObject {
 	recordCount: number;
 	response: Response;
+}
+
+export interface ApiResponse {
+	recordCount: number;
+	response: {
+		content: Array<{
+			Id: string;
+			getPath: string;
+		}>;
+		pageable: {
+			pageNumber: number;
+			pageSize: number;
+			sort: {
+				empty: boolean;
+				unsorted: boolean;
+				sorted: boolean;
+			};
+			offset: number;
+			paged: boolean;
+			unpaged: boolean;
+		};
+		last: boolean;
+		totalPages: number;
+		totalElements: number;
+		first: boolean;
+		size: number;
+		number: number;
+		sort: {
+			empty: boolean;
+			unsorted: boolean;
+			sorted: boolean;
+		};
+		numberOfElements: number;
+		empty: boolean;
+	};
 }

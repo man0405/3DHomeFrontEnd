@@ -2,6 +2,7 @@ import Project from "./Project";
 import classes from "./ProjectList.module.css";
 import { HouseInfo } from "@/util/type";
 const ProjectList = (props: { data: HouseInfo[] }) => {
+	console.log(props.data);
 	return (
 		<div className={classes.list}>
 			<ul>

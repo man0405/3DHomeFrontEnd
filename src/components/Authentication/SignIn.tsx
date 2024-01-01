@@ -2,7 +2,6 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { login } from "../../dto/auth.dto";
-import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 
 import classes from "./SignIn.module.css";
@@ -54,9 +53,7 @@ const SignIn = () => {
 					}
 					const data = await res.json();
 					console.log("file: SignIn.tsx:56 ~ submitHandler ~ data:", data);
-
-					if (data.result === "true") {
-						console.log("first result");
+					if (data.name != "") {
 						router.push("/home");
 					} else {
 						setError({ message: data.message, code: data.code, type: "all" });

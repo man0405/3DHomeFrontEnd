@@ -3,12 +3,12 @@
 import GalleryItem from "./GalleryItem";
 import classes from "./Gallery.module.css";
 
-const Gallery = (props: { data: { id: number; image: string }[] }) => {
+const Gallery = (props: { data: { Id: string; getPath: string }[] }) => {
 	return (
 		<>
 			<div className={classes["list-wrap"]}>
 				{props.data.map((item) => (
-					<GalleryItem image={item.image} key={item.id} />
+					<GalleryItem image={item.getPath} key={item.Id} />
 				))}
 			</div>
 		</>

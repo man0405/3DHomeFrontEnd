@@ -1,9 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./Change.module.css";
+
 import { useFetch } from "@/hook/useFetch";
 import { ShowModalDemo } from "../ui/Modal/ShowModal";
 import AlertModal from "../ui/Modal/AlertModal";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { customerAction } from "@/redux/customer";
 
 const DEFAULT_COUNTRY = [
 	"Afghanistan",
@@ -253,17 +256,32 @@ const DEFAULT_COUNTRY = [
 ];
 
 export default function ChangeProfile() {
-	const [dataForm, setDataForm] = useState({});
-	const [confirm, setConfirm] = useState(false);
+	const selection = useAppSelector((state) => state.customer);
+	const dispatch = useAppDispatch();
 	const { data, loading, error, fetchData } = useFetch();
+
+	const [dataForm, setDataForm] = useState({
+		firstName: selection.firstName,
+		lastName: selection.lastName,
+		dob: selection.dob,
+		country: selection.country,
+	});
+	const [confirm, setConfirm] = useState(false);
+	const [showError, setShowError] = useState(false);
+
 	const submitHandler = async (e: React.FormEvent) => {
 		e.preventDefault();
-
+		if ((dataForm.firstName.trim() === "", dataForm.lastName.trim() === "")) {
+			setShowError(true);
+			return;
+		}
 		fetchData({
 			method: "PUT",
 			link: "api/v1/profile",
 			body: dataForm,
 		});
+		dispatch(customerAction.storeProfile(dataForm));
+		setShowError(false);
 		setConfirm(true);
 	};
 	const onConfirm = () => {
@@ -280,19 +298,45 @@ export default function ChangeProfile() {
 
 	return (
 		<>
-			``
 			{data && confirm && (
 				<ShowModalDemo onConfirm={onConfirm} element={<AlertModal />} />
 			)}
 			<form onSubmit={submitHandler} className={classes.form}>
-				<label htmlFor="firstName">First Name</label>
-				<input type="text" id="firstName" onChange={handleChange} />
-				<label htmlFor="lastName">Last Name</label>
-				<input type="text" id="lastName" onChange={handleChange} />
+				<label htmlFor="firstName" className={showError ? "error" : ""}>
+					First Name
+				</label>
+				<input
+					type="text"
+					id="firstName"
+					className={showError ? "error" : ""}
+					value={dataForm.firstName}
+					required
+					onChange={handleChange}
+				/>
+				<label htmlFor="lastName" className={showError ? "error" : ""}>
+					Last Name
+				</label>
+				<input
+					type="text"
+					className={showError ? "error" : ""}
+					id="lastName"
+					value={dataForm.lastName}
+					onChange={handleChange}
+				/>
 				<label htmlFor="date">Date</label>
-				<input type="date" id="dob" onChange={handleChange} />
+				<input
+					type="date"
+					id="dob"
+					onChange={handleChange}
+					value={dataForm.dob ? dataForm.dob.slice(0, 10) : "2020-01-01"}
+					required
+				/>
 				<label htmlFor="country">Country</label>
-				<select id="country" onChange={handleChange}>
+				<select
+					id="country"
+					value={dataForm.country ? dataForm.country : "Afghanistan"}
+					onChange={handleChange}
+				>
 					{DEFAULT_COUNTRY.map((country) => (
 						<option key={country} value={country}>
 							{country}
